@@ -1,5 +1,4 @@
-class ClientsController < ApplicationController:API
-	before_action :set_client, only: [:show, :update, :destroy]
+class ClientsController < ApplicationController
 
 	def index
 		@clients = Client.all
@@ -7,7 +6,7 @@ class ClientsController < ApplicationController:API
 	end
 
 	def show
-		render json: @client
+		@client = Client.find(params[:id])
 	end
 
 	def create
@@ -20,24 +19,7 @@ class ClientsController < ApplicationController:API
 		end
 	end
 
-	def update
-		if @client.update(client_params)
-			render json: @client
-		else
-			render json: @client.errors, status: :unprocessable_entity
-		end
-	end
-
-	def destroy
-		@client.destroy
-		head :no_content
-	end
-
 	private
-
-	def set_client
-		@client = Client.find(params[:id])
-	end
 
 	def client_params
 		params.require(:client).permit(:name)

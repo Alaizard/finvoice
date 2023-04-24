@@ -1,24 +1,23 @@
-# README
+<!-- Create a client -->
+curl -X POST -H "Content-Type: application/json" -d '{"name": "Finvoice"}' http://localhost:3000/clients
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<!-- Create an Invoice -->
+curl -X POST -H "Content-Type: application/json" -d '{"number": "INV-123", "amount": 1000, "due_date": "2023-05-01", "status": "created"}' http://localhost:3000/clients/1/invoices
 
-Things you may want to cover:
+curl -X POST -H "Content-Type: application/json" -d '{"number": "INV-124", "amount": 240.28, "due_date": "2023-05-01", "status": "created"}' http://localhost:3000/clients/1/invoices
 
-* Ruby version
+curl -X POST -H "Content-Type: application/json" -d '{"number": "INV-125", "amount": 88888.88, "due_date": "2023-05-01", "status": "created"}' http://localhost:3000/clients/1/invoices
 
-* System dependencies
+<!-- Approve an Invoice -->
+curl -X PATCH -H "Content-Type: application/json" -d '{"status": "approved"}' http://localhost:3000/clients/1/invoices/1
 
-* Configuration
+<!-- Reject an Invoice -->
+curl -X PATCH -H "Content-Type: application/json" -d '{"status": "rejected"}' http://localhost:3000/clients/1/invoices/2
 
-* Database creation
+<!-- Purchase an Invoice -->
 
-* Database initialization
+curl -X PATCH -H "Content-Type: application/json" -d '{"status": "purchased", "fee_percentage": 15, "fee_start_date": "2023-04-28"}' http://localhost:3000/clients/1/invoices/1
 
-* How to run the test suite
+<!-- Close an invoice -->
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+curl -X POST -H "Content-Type: application/json" -d '{"status": "closed", "fee_closing_date": "2023-04-30"}' http://localhost:3000/clients/1/invoices/1/close
