@@ -8,7 +8,7 @@ class Invoice < ApplicationRecord
   scope :open, -> {where.not(status: 'rejected')}
 
   def fee_amount
-    self.amount * (self.fee_percentage / 100)
+    self.amount * self.fee_percentage
   end
 
   def close(params)
@@ -18,7 +18,7 @@ class Invoice < ApplicationRecord
     fee_total = calculate_total_fees(days_open)
     
     self.fee_closing_date = params[:fee_closing_date]
-    self.total_fees = fee_total
+    self.total_fees = fee_total.abs
     self.status = 'closed'
     self.save!
   end

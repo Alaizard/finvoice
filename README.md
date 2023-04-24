@@ -16,7 +16,9 @@ curl -X PATCH -H "Content-Type: application/json" -d '{"status": "rejected"}' ht
 
 <!-- Purchase an Invoice -->
 
-curl -X PATCH -H "Content-Type: application/json" -d '{"status": "purchased", "fee_percentage": 15, "fee_start_date": "2023-04-28"}' http://localhost:3000/clients/1/invoices/1
+<!-- Note that the percentage is a decimal number. This is so the math operations between it and the amount work more easily than a whole number percentage -->
+
+curl -X PATCH -H "Content-Type: application/json" -d '{"status": "purchased", "fee_percentage": 0.15, "fee_start_date": "2023-04-28"}' http://localhost:3000/clients/1/invoices/1
 
 <!-- Close an invoice -->
 
