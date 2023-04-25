@@ -23,3 +23,8 @@ curl -X PATCH -H "Content-Type: application/json" -d '{"status": "purchased", "f
 <!-- Close an invoice -->
 
 curl -X POST -H "Content-Type: application/json" -d '{"status": "closed", "fee_closing_date": "2023-04-30"}' http://localhost:3000/clients/1/invoices/1/close
+
+
+<!-- Postman -->
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/14937728-846753ea-9f82-4a9c-baa1-62d2a049b62d?action=collection%2Ffork&collection-url=entityId%3D14937728-846753ea-9f82-4a9c-baa1-62d2a049b62d%26entityType%3Dcollection%26workspaceId%3Dd1a8f519-9535-4d04-a15c-34c9fbb441b2)
