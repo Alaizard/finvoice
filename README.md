@@ -2,11 +2,11 @@
 curl -X POST -H "Content-Type: application/json" -d '{"name": "Finvoice"}' http://localhost:3000/clients
 
 <!-- Create an Invoice -->
-curl -X POST -H "Content-Type: application/json" -d '{"number": "INV-123", "amount": 1000, "due_date": "2023-05-01", "status": "created"}' http://localhost:3000/clients/1/invoices
+curl -X POST -H 'Content-Type: multipart/form-data' -F 'invoice[number]=INV-123' -F 'invoice[amount]=1000' -F 'invoice[due_date]=2023-05-01' -F 'invoice[status]=created' -F 'scan=@invoice_scan.pdf' localhost:3000/clients/1/invoices
 
-curl -X POST -H "Content-Type: application/json" -d '{"number": "INV-124", "amount": 240.28, "due_date": "2023-05-01", "status": "created"}' http://localhost:3000/clients/1/invoices
+curl -X POST -H 'Content-Type: multipart/form-data' -F 'invoice[number]=INV-124' -F 'invoice[amount]=150.50' -F 'invoice[due_date]=2023-05-01' -F 'invoice[status]=created' -F 'scan=@invoice_scan_2.png' localhost:3000/clients/1/invoices
 
-curl -X POST -H "Content-Type: application/json" -d '{"number": "INV-125", "amount": 88888.88, "due_date": "2023-05-01", "status": "created"}' http://localhost:3000/clients/1/invoices
+curl -X POST -H 'Content-Type: multipart/form-data' -F 'invoice[number]=INV-125' -F 'invoice[amount]=1000' -F 'invoice[due_date]=2023-05-01' -F 'invoice[status]=created' -F 'scan=@invoice_scan_3.pdf' localhost:3000/clients/1/invoices
 
 <!-- Approve an Invoice -->
 curl -X PATCH -H "Content-Type: application/json" -d '{"status": "approved"}' http://localhost:3000/clients/1/invoices/1

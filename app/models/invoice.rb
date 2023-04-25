@@ -7,6 +7,14 @@ class Invoice < ApplicationRecord
 
   scope :open, -> {where.not(status: 'rejected')}
 
+  def scan_on_disk
+    ActiveStorage::Blob.service.path_for(scan.key)
+  end
+  
+  def scan_url
+    Rails.application.routes.url_helpers.url_for(scan) if scan.attached?
+  end
+  
   def fee_amount
     self.amount * self.fee_percentage
   end

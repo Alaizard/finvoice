@@ -1,4 +1,4 @@
-class InvoicesController < ApplicationController
+class InvoicesController < ActionController::API
 	before_action :set_client
 	before_action :set_invoice, except: [:create, :close_invoice]
 
