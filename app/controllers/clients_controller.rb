@@ -1,4 +1,4 @@
-class ClientsController < ApplicationController
+class ClientsController < ActionController::API
 
 	def index
 		@clients = Client.all
@@ -7,6 +7,7 @@ class ClientsController < ApplicationController
 
 	def show
 		@client = Client.find(params[:id])
+		render json: @client
 	end
 
 	def create
